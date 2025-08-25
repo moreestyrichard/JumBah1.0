@@ -1,6 +1,11 @@
 import { useParams, useLocation } from "react-router-dom";
-// Embedded districts data
+import { districts as baseDistricts } from "../data/attractions";
+import { useGame } from "../contexts/GameContext";
+import { useAuth } from "../contexts/AuthContext";
+import "../styles/ExplorePage.css";
+
 const districts = {
+  ...baseDistricts,
   "Kota Kinabalu": {
     description:
       "Capital city of Sabah, known for its vibrant markets and waterfront.",
@@ -94,9 +99,6 @@ const districts = {
     ],
   },
 };
-import { useGame } from "../contexts/GameContext";
-import { useAuth } from "../contexts/AuthContext";
-import "../styles/ExplorePage.css";
 
 const ExplorePage = () => {
   const { districtName } = useParams();
