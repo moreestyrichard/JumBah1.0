@@ -11,6 +11,7 @@ import AIPlanner from "./pages/AIPlanner";
 import Map from "./pages/Map";
 import GamePage from "./pages/GamePage";
 import Register from "./pages/Register";
+import ExplorePage from "./pages/ExplorePage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/adventure" element={<AdventurePage />} />
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/explore/:districtName" element={<ExplorePage />} />
           <Route path="/ai-planner" element={<AIPlanner />} />
           <Route path="/map" element={<Map />} />
           <Route path="/game" element={<GamePage />} />
