@@ -48,7 +48,7 @@ const AIPlanner = () => {
     departure_date: "",
     return_date: "",
     passengers: "1",
-    class: "economy",
+    flight_class: "economy",
   });
   const interestOptions = [
     "Nature & Wildlife",
@@ -133,11 +133,64 @@ const AIPlanner = () => {
   };
 
   const generateItinerary = async () => {
-    // Logic remains the same...
+    if (isLoading) return;
+    addMessage(
+      "user",
+      `Plan itinerary for ${itineraryForm.duration} in Sabah`
+    );
+    setIsLoading(true);
+    try {
+      const payload = {
+        ...itineraryForm,
+        group_size: parseInt(itineraryForm.group_size, 10),
+      };
+      const response = await aiPlannerService.generateItinerary(payload);
+      if (response.success) {
+        addMessage("bot", response.itinerary);
+      } else {
+        addMessage(
+          "bot",
+          "I'm sorry, I couldn't generate the itinerary. Please try again."
+        );
+      }
+    } catch (error) {
+      console.error("Itinerary error:", error);
+      addMessage(
+        "bot",
+        "I'm having trouble connecting. Please check that the backend server is running and try again."
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const getFlightRecommendations = async () => {
-    // Logic remains the same...
+    if (isLoading) return;
+    addMessage("user", "Find flight options");
+    setIsLoading(true);
+    try {
+      const payload = {
+        ...flightForm,
+        passengers: parseInt(flightForm.passengers, 10),
+      };
+      const response = await aiPlannerService.getFlightRecommendations(payload);
+      if (response.success) {
+        addMessage("bot", response.recommendations);
+      } else {
+        addMessage(
+          "bot",
+          "I'm sorry, I couldn't find flights right now. Please try again."
+        );
+      }
+    } catch (error) {
+      console.error("Flight error:", error);
+      addMessage(
+        "bot",
+        "I'm having trouble connecting. Please check that the backend server is running and try again."
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const copyMessage = (content) => {
@@ -197,6 +250,169 @@ const AIPlanner = () => {
           </div>
 
           {/* Form Content will be rendered here based on activeMode */}
+          <div className="sidebar-content">
+            {activeMode === "itinerary" && (
+              <form
+                className="sidebar-form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  generateItinerary();
+                }}
+              >
+                <label>
+                  <FaCalendarAlt /> Duration
+                  <input
+                    type="text"
+                    value={itineraryForm.duration}
+                    onChange={(e) =>
+                      setItineraryForm({ ...itineraryForm, duration: e.target.value })
+                    }
+                  />
+                </label>
+                <label>
+                  <FaMoneyBillWave /> Budget (MYR)
+                  <input
+                    type="number"
+                    value={itineraryForm.budget}
+                    onChange={(e) =>
+                      setItineraryForm({ ...itineraryForm, budget: e.target.value })
+                    }
+                  />
+                </label>
+                <label>
+                  <FaBed /> Accommodation
+                  <select
+                    value={itineraryForm.accommodation}
+                    onChange={(e) =>
+                      setItineraryForm({
+                        ...itineraryForm,
+                        accommodation: e.target.value,
+                      })
+                    }
+                  >
+                    <option value="budget">Budget</option>
+                    <option value="mid-range">Mid-range</option>
+                    <option value="luxury">Luxury</option>
+                  </select>
+                </label>
+                <label>
+                  <FaUsers /> Group Size
+                  <input
+                    type="number"
+                    min="1"
+                    value={itineraryForm.group_size}
+                    onChange={(e) =>
+                      setItineraryForm({
+                        ...itineraryForm,
+                        group_size: e.target.value,
+                      })
+                    }
+                  />
+                </label>
+                <div className="interest-options">
+                  {interestOptions.map((interest) => (
+                    <label key={interest}>
+                      <input
+                        type="checkbox"
+                        checked={itineraryForm.interests.includes(interest)}
+                        onChange={() => handleInterestToggle(interest)}
+                      />
+                      {interest}
+                    </label>
+                  ))}
+                </div>
+                <button type="submit" disabled={isLoading}>
+                  <FaPaperPlane /> Generate
+                </button>
+              </form>
+            )}
+
+            {activeMode === "flights" && (
+              <form
+                className="sidebar-form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  getFlightRecommendations();
+                }}
+              >
+                <label>
+                  Origin
+                  <input
+                    type="text"
+                    value={flightForm.origin}
+                    onChange={(e) =>
+                      setFlightForm({ ...flightForm, origin: e.target.value })
+                    }
+                  />
+                </label>
+                <label>
+                  Departure Date
+                  <input
+                    type="date"
+                    value={flightForm.departure_date}
+                    onChange={(e) =>
+                      setFlightForm({
+                        ...flightForm,
+                        departure_date: e.target.value,
+                      })
+                    }
+                  />
+                </label>
+                <label>
+                  Return Date
+                  <input
+                    type="date"
+                    value={flightForm.return_date}
+                    onChange={(e) =>
+                      setFlightForm({
+                        ...flightForm,
+                        return_date: e.target.value,
+                      })
+                    }
+                  />
+                </label>
+                <label>
+                  Passengers
+                  <input
+                    type="number"
+                    min="1"
+                    value={flightForm.passengers}
+                    onChange={(e) =>
+                      setFlightForm({
+                        ...flightForm,
+                        passengers: e.target.value,
+                      })
+                    }
+                  />
+                </label>
+                <label>
+                  Class
+                  <select
+                    value={flightForm.flight_class}
+                    onChange={(e) =>
+                      setFlightForm({
+                        ...flightForm,
+                        flight_class: e.target.value,
+                      })
+                    }
+                  >
+                    <option value="economy">Economy</option>
+                    <option value="business">Business</option>
+                    <option value="first">First</option>
+                  </select>
+                </label>
+                <button type="submit" disabled={isLoading}>
+                  <FaPaperPlane /> Search
+                </button>
+              </form>
+            )}
+
+            {activeMode === "chat" && (
+              <p className="sidebar-hint">
+                Use the chat on the right to ask any Sabah travel questions.
+              </p>
+            )}
+          </div>
         </div>
 
         {/* Main Chat Area */}
