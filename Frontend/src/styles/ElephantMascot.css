@@ -1,0 +1,9 @@
+.elephant-mascot {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  font-size: 5rem;
+  transform: perspective(500px) rotateY(-15deg);
+  filter: drop-shadow(0 8px 6px rgba(0, 0, 0, 0.2));
+  z-index: 1000;
+}
