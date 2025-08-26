@@ -1,6 +1,11 @@
 import { useParams, useLocation } from "react-router-dom";
-// Embedded districts data
+import { districts as baseDistricts } from "../data/attractions";
+import { useGame } from "../contexts/GameContext";
+import { useAuth } from "../contexts/AuthContext";
+import "../styles/ExplorePage.css";
+
 const districts = {
+  ...baseDistricts,
   "Kota Kinabalu": {
     description:
       "Capital city of Sabah, known for its vibrant markets and waterfront.",
@@ -8,27 +13,27 @@ const districts = {
       {
         name: "Gaya Street",
         desc: "Famous Sunday market with local food, crafts, and souvenirs.",
-        image: "/jumbah image/gaya street.JPG",
+        image: "/adventure/gaya street.JPG",
       },
       {
         name: "Signal Hill Observatory",
         desc: "Best city view and sunset spot in Kota Kinabalu.",
-        image: "/jumbah image/gunung kinabalu.jpg",
+        image: "/adventure/gunung kinabalu.jpg",
       },
       {
         name: "Sabah Art Gallery",
         desc: "Modern art museum showcasing local artists.",
-        image: "/jumbah image/sabah-art-gallery.jpg",
+        image: "/adventure/sabah-art-gallery.jpg",
       },
       {
         name: "Muzium Sabah",
         desc: "Museum of Sabah's history and culture.",
-        image: "/jumbah image/Muzium Sabah.jpg",
+        image: "/adventure/Muzium Sabah.jpg",
       },
       {
         name: "Tanjung Aru Beach",
         desc: "Popular beach for sunset and picnics.",
-        image: "/jumbah image/Tanjung Aru.jpg",
+        image: "/adventure/Tanjung Aru.jpg",
       },
     ],
     stamps: [
@@ -46,17 +51,17 @@ const districts = {
       {
         name: "Kinabatangan River Cruise",
         desc: "River cruise for wildlife spotting: proboscis monkeys, orangutans, and more.",
-        image: "/jumbah image/kinabatangan river cruise.jpg",
+        image: "/adventure/kinabatangan river cruise.jpg",
       },
       {
         name: "Poring Hot Springs",
         desc: "Natural hot springs and canopy walk.",
-        image: "/jumbah image/poring2.jpg",
+        image: "/adventure/poring2.jpg",
       },
       {
         name: "Mari Mari Cultural Village",
         desc: "Experience traditional Sabahan culture and food.",
-        image: "/jumbah image/mari2 cv.jpg",
+        image: "/adventure/mari2 cv.jpg",
       },
     ],
     stamps: [
@@ -75,7 +80,7 @@ const districts = {
       {
         name: "Pulau Sipadan",
         desc: "Top diving spot in Malaysia, known for turtles and barracuda.",
-        image: "/jumbah image/pulau sipadan.jpg",
+        image: "/adventure/pulau sipadan.jpg",
       },
     ],
     stamps: [{ id: 9, name: "Sipadan Stamp", location: "Pulau Sipadan" }],
@@ -86,7 +91,7 @@ const districts = {
       {
         name: "Tawau Hills Park",
         desc: "Rainforest park with waterfalls and giant trees.",
-        image: "/jumbah image/tawau hills.jfif",
+        image: "/adventure/tawau hills.jfif",
       },
     ],
     stamps: [
@@ -94,15 +99,11 @@ const districts = {
     ],
   },
 };
-import { useGame } from "../contexts/GameContext";
-import { useAuth } from "../contexts/AuthContext";
-import "../styles/ExplorePage.css";
 
 const ExplorePage = () => {
   const { districtName } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const district = searchParams.get("district");
   const attractionQuery = searchParams.get("attraction");
   const formattedName = districtName.replace(/-/g, " ");
   const districtData = districts[formattedName];
