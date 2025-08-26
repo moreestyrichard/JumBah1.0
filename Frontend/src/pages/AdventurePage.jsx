@@ -101,7 +101,6 @@ const AdventurePage = () => {
   const location = useLocation();
   const { districtName } = useParams();
   const searchParams = new URLSearchParams(location.search);
-  const district = searchParams.get("district");
   const attractionQuery = searchParams.get("attraction");
   const formattedName = districtName
     ? districtName.replace(/-/g, " ")

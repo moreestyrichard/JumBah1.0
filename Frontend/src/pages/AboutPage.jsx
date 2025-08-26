@@ -8,6 +8,11 @@ const AboutPage = () => {
         <h1>About JumBah</h1>
       </header>
       <section className="content">
+        <img
+          src="/adventure/gunung%20kinabalu.jpg"
+          alt="Mount Kinabalu"
+          className="section-image"
+        />
         <h2>Geography</h2>
         <p>
           Located on the northern part of the island of Borneo, Sabah is the
@@ -22,6 +27,11 @@ const AboutPage = () => {
           to the Sulu Sea.
         </p>
 
+        <img
+          src="/adventure/pulau%20sipadan.jpg"
+          alt="Sipadan Island"
+          className="section-image"
+        />
         <h2>Area and Climate</h2>
         <p>
           Sabah covers an area of approximately 73,619 square kilometers. It
@@ -33,6 +43,11 @@ const AboutPage = () => {
           rainfall is common year-round.
         </p>
 
+        <img
+          src="/adventure/Muzium%20Sabah.jpg"
+          alt="Sabah Museum"
+          className="section-image"
+        />
         <h2>History and Economy</h2>
         <p>
           Sabah's history dates back over 20,000 years, with evidence of early
@@ -50,6 +65,11 @@ const AboutPage = () => {
           conservation areas.
         </p>
 
+        <img
+          src="/adventure/mari2%20cv.jpg"
+          alt="Mari Mari Cultural Village"
+          className="section-image"
+        />
         <h2>People and Culture</h2>
         <p>
           Sabah is a vibrant multicultural state with over 30 different ethnic
@@ -62,6 +82,11 @@ const AboutPage = () => {
           of the most significant cultural events in Sabah.
         </p>
 
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/8/88/City_Mosque_Kota_Kinabalu.jpg"
+          alt="City Mosque Kota Kinabalu"
+          className="section-image"
+        />
         <h2>Official Religion</h2>
         <p>
           The official religion of Sabah is Islam. However, other religions,
@@ -69,6 +94,11 @@ const AboutPage = () => {
           practiced.
         </p>
 
+        <img
+          src="https://images.unsplash.com/photo-1526378722484-cc5c34832752?auto=format&fit=crop&w=800&q=60"
+          alt="Bahasa Melayu text"
+          className="section-image"
+        />
         <h2>National Language</h2>
         <p>
           The official language is Bahasa Melayu (Malay), which is widely
@@ -82,5 +112,3 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
-
-// TRY OUT CODE BELOW ABOVE IS ORIGINAL
