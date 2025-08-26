@@ -1,6 +1,21 @@
 import React from "react";
 import "../styles/AboutPage.css";
 
+const images = {
+  geography:
+    "https://images.unsplash.com/photo-1549899591-4be32c4e1d05?auto=format&fit=crop&w=800&q=60",
+  climate:
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60",
+  history:
+    "https://images.unsplash.com/photo-1604360920938-25a83d9bafd0?auto=format&fit=crop&w=800&q=60",
+  culture:
+    "https://images.unsplash.com/photo-1551806235-3a07803d88b4?auto=format&fit=crop&w=800&q=60",
+  religion:
+    "https://images.unsplash.com/photo-1529701419339-21c61a009569?auto=format&fit=crop&w=800&q=60",
+  language:
+    "https://images.unsplash.com/photo-1517638851339-a711c08c1db0?auto=format&fit=crop&w=800&q=60",
+};
+
 const AboutPage = () => {
   return (
     <div className="container aboutPage">
@@ -8,6 +23,11 @@ const AboutPage = () => {
         <h1>About JumBah</h1>
       </header>
       <section className="content">
+        <img
+          src={images.geography}
+          alt="Mount Kinabalu in Sabah"
+          className="section-image"
+        />
         <h2>Geography</h2>
         <p>
           Located on the northern part of the island of Borneo, Sabah is the
@@ -22,6 +42,11 @@ const AboutPage = () => {
           to the Sulu Sea.
         </p>
 
+        <img
+          src={images.climate}
+          alt="Tropical beach in Sabah"
+          className="section-image"
+        />
         <h2>Area and Climate</h2>
         <p>
           Sabah covers an area of approximately 73,619 square kilometers. It
@@ -33,6 +58,11 @@ const AboutPage = () => {
           rainfall is common year-round.
         </p>
 
+        <img
+          src={images.history}
+          alt="Palm oil plantation in Sabah"
+          className="section-image"
+        />
         <h2>History and Economy</h2>
         <p>
           Sabah's history dates back over 20,000 years, with evidence of early
@@ -50,6 +80,11 @@ const AboutPage = () => {
           conservation areas.
         </p>
 
+        <img
+          src={images.culture}
+          alt="Cultural festival in Sabah"
+          className="section-image"
+        />
         <h2>People and Culture</h2>
         <p>
           Sabah is a vibrant multicultural state with over 30 different ethnic
@@ -62,6 +97,11 @@ const AboutPage = () => {
           of the most significant cultural events in Sabah.
         </p>
 
+        <img
+          src={images.religion}
+          alt="Mosque in Sabah"
+          className="section-image"
+        />
         <h2>Official Religion</h2>
         <p>
           The official religion of Sabah is Islam. However, other religions,
@@ -69,6 +109,11 @@ const AboutPage = () => {
           practiced.
         </p>
 
+        <img
+          src={images.language}
+          alt="Malay language text"
+          className="section-image"
+        />
         <h2>National Language</h2>
         <p>
           The official language is Bahasa Melayu (Malay), which is widely

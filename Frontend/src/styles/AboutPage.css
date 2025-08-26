@@ -96,6 +96,14 @@ body {
   margin-bottom: 1.5rem;
 }
 
+/* Images displayed above each section heading */
+.section-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
 /* A modern, understated link style */
 .content a {
   color: var(--primary-color);
