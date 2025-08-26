@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css"; // Import the routing CSS
@@ -20,6 +20,46 @@ L.Icon.Default.mergeOptions({
 });
 // --- End of icon fix ---
 
+const sabahAttractions = [
+  {
+    name: "Mount Kinabalu",
+    lat: 6.0647,
+    lng: 116.5621,
+    description:
+      "Highest mountain in Malaysia and famous for its biodiversity...",
+  },
+  {
+    name: "Sepilok Orangutan Sanctuary",
+    lat: 5.8742,
+    lng: 117.9444,
+    description: "Famous orangutan rehabilitation center...",
+  },
+  {
+    name: "Sipadan Island",
+    lat: 4.1133,
+    lng: 118.6281,
+    description: "One of the most top 10 world-class diving destination...",
+  },
+  {
+    name: "Kinabatangan River",
+    lat: 5.5167,
+    lng: 118.2333,
+    description: "Wildlife sanctuary and river cruise...",
+  },
+  {
+    name: "Tip of Borneo",
+    lat: 7.0186,
+    lng: 116.6794,
+    description: "Northernmost point of Borneo.",
+  },
+  {
+    name: "Mari Mari Cultural Village",
+    lat: 6.0433,
+    lng: 116.1133,
+    description: "Traditional cultural experience.",
+  },
+];
+
 export default function LeafletMap() {
   // --- STATE MANAGEMENT ---
   const mapRef = useRef(null);
@@ -34,47 +74,6 @@ export default function LeafletMap() {
   const [searchTerm, setSearchTerm] = useState("");
   const [navDestination, setNavDestination] = useState("");
   const [externalResults, setExternalResults] = useState([]);
-
-  // --- DATA ---
-  const sabahAttractions = [
-    {
-      name: "Mount Kinabalu",
-      lat: 6.0647,
-      lng: 116.5621,
-      description:
-        "Highest mountain in Malaysia and famous for its biodiversity...",
-    },
-    {
-      name: "Sepilok Orangutan Sanctuary",
-      lat: 5.8742,
-      lng: 117.9444,
-      description: "Famous orangutan rehabilitation center...",
-    },
-    {
-      name: "Sipadan Island",
-      lat: 4.1133,
-      lng: 118.6281,
-      description: "One of the most top 10 world-class diving destination...",
-    },
-    {
-      name: "Kinabatangan River",
-      lat: 5.5167,
-      lng: 118.2333,
-      description: "Wildlife sanctuary and river cruise...",
-    },
-    {
-      name: "Tip of Borneo",
-      lat: 7.0186,
-      lng: 116.6794,
-      description: "Northernmost point of Borneo.",
-    },
-    {
-      name: "Mari Mari Cultural Village",
-      lat: 6.0433,
-      lng: 116.1133,
-      description: "Traditional cultural experience.",
-    },
-  ];
 
   // --- MAP INITIALIZATION ---
   useEffect(() => {
@@ -103,16 +102,16 @@ export default function LeafletMap() {
         mapInstanceRef.current = null;
       }
     };
-  }, []);
+  }, [addAttractionMarkers]);
 
   // --- CORE FUNCTIONS ---
-  const addAttractionMarkers = (map) => {
+  const addAttractionMarkers = useCallback((map) => {
     sabahAttractions.forEach((attraction) => {
       const marker = L.marker([attraction.lat, attraction.lng]).addTo(map);
       marker.bindPopup(`<strong>${attraction.name}</strong>`);
       marker.on("click", () => centerOnAttraction(attraction));
     });
-  };
+  }, []);
 
   const centerOnAttraction = (attraction) => {
     const map = mapInstanceRef.current;
@@ -194,8 +193,6 @@ export default function LeafletMap() {
   );
 
   // --- EXTERNAL SEARCH ---
-  const sabahBoundingBox = "4.0,115.0,7.5,119.0"; // south, west, north, east
-
   const searchExternalLocations = async (query) => {
     if (!query) return;
     // Use Sabah bounding box for location search

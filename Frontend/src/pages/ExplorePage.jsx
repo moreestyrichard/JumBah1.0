@@ -102,7 +102,6 @@ const ExplorePage = () => {
   const { districtName } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const district = searchParams.get("district");
   const attractionQuery = searchParams.get("attraction");
   const formattedName = districtName.replace(/-/g, " ");
   const districtData = districts[formattedName];

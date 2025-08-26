@@ -57,7 +57,7 @@ const ChatbotWidget = () => {
       ) {
         completeQuest("q4");
       }
-    } catch (error) {
+    } catch {
       const errorMessage = {
         sender: "bot",
         text: "Oops! I'm having a little trouble connecting. Please try again.",

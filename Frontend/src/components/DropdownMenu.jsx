@@ -262,8 +262,9 @@ const DropdownMenu = () => {
   );
 };
 
-const MenuItem = ({ icon: Icon, label, to, onClick, color }) => {
+const MenuItem = ({ icon, label, to, onClick, color }) => {
   const navigate = useNavigate();
+  const IconComponent = icon;
 
   const handleClick = () => {
     if (onClick) onClick();
@@ -275,7 +276,7 @@ const MenuItem = ({ icon: Icon, label, to, onClick, color }) => {
   return (
     <button className="menu-item" onClick={handleClick}>
       <div className="menu-item-content">
-        <Icon style={{ color }} />
+        <IconComponent style={{ color }} />
         <span>{label}</span>
       </div>
     </button>

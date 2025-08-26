@@ -7,14 +7,9 @@ import {
   FaRobot,
   FaUser,
   FaPaperPlane,
-  FaSpinner,
   FaMapMarkedAlt,
   FaPlane,
   FaCommentDots, // Changed from FaHeart for clarity
-  FaCalendarAlt,
-  FaMoneyBillWave,
-  FaUsers,
-  FaBed,
   FaCopy,
 } from "react-icons/fa";
 
@@ -36,32 +31,7 @@ const AIPlanner = () => {
   const chatContainerRef = useRef(null);
   const inputRef = useRef(null);
 
-  const [itineraryForm, setItineraryForm] = useState({
-    duration: "3-5 days",
-    budget: "1000",
-    interests: [],
-    accommodation: "mid-range",
-    group_size: "2",
-  });
-  const [flightForm, setFlightForm] = useState({
-    origin: "",
-    departure_date: "",
-    return_date: "",
-    passengers: "1",
-    class: "economy",
-  });
-  const interestOptions = [
-    "Nature & Wildlife",
-    "Adventure Sports",
-    "Cultural Experiences",
-    "Photography",
-    "Diving & Snorkeling",
-    "Food & Cuisine",
-    "Relaxation",
-    "Shopping",
-    "Nightlife",
-    "History",
-  ];
+  
 
   // --- RECODE FIX 2: Updated scroll function for reliability ---
   // This now directly manipulates the scrollTop of the container, which is more robust.
@@ -121,23 +91,6 @@ const AIPlanner = () => {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleInterestToggle = (interest) => {
-    setItineraryForm((prev) => ({
-      ...prev,
-      interests: prev.interests.includes(interest)
-        ? prev.interests.filter((i) => i !== interest)
-        : [...prev.interests, interest],
-    }));
-  };
-
-  const generateItinerary = async () => {
-    // Logic remains the same...
-  };
-
-  const getFlightRecommendations = async () => {
-    // Logic remains the same...
   };
 
   const copyMessage = (content) => {
