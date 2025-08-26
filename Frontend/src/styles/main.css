@@ -1,31 +1,31 @@
 /* Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap");
 
 /* CSS Variables for Theming */
 :root {
-  --font-main: "Poppins", sans-serif;
+  --font-main: "Fredoka", sans-serif;
 
   /* Light Theme */
-  --primary-color: #0484d6;
-  --secondary-color: #002b7f;
-  --accent-color: #77ccff;
-  --background-color: #f4f8fa;
-  --surface-color: #ffffff;
-  --text-primary: #121212;
-  --text-secondary: #555555;
-  --glow-color: rgba(4, 132, 214, 0.5);
+  --primary-color: #ffd54f; /* Soft yellow */
+  --secondary-color: #ff8f00; /* Orangey accent */
+  --accent-color: #ffecb3; /* Pale highlight */
+  --background-color: #fffbe6; /* Light background */
+  --surface-color: #fff3c4; /* Card surfaces */
+  --text-primary: #4a3525;
+  --text-secondary: #7a5f45;
+  --glow-color: rgba(255, 213, 79, 0.6);
 }
 
 [data-theme="dark"] {
   /* Dark Theme */
-  --primary-color: #77ccff;
-  --secondary-color: #e0f7fa;
-  --accent-color: #0484d6;
-  --background-color: #001f3f; /* Dark Navy */
-  --surface-color: #002b5c; /* Darker Navy */
-  --text-primary: #f4f8fa;
-  --text-secondary: #b0c4de;
-  --glow-color: rgba(119, 204, 255, 0.6);
+  --primary-color: #ffecb3;
+  --secondary-color: #ffd54f;
+  --accent-color: #ff8f00;
+  --background-color: #403000;
+  --surface-color: #5c4200;
+  --text-primary: #fffbe6;
+  --text-secondary: #ffe0b2;
+  --glow-color: rgba(255, 236, 179, 0.4);
 }
 
 * {
@@ -58,6 +58,15 @@ a {
 
 a:hover {
   color: var(--accent-color);
+}
+
+.sticker {
+  background: var(--accent-color);
+  border: 4px solid #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  padding: 0.25rem;
+  transform: rotate(-3deg);
 }
 
 .container {
