@@ -1,8 +1,12 @@
-import "../styles/HomePage.css";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import "../styles/HomePage.css";
+import "../styles/Cyberpunk.css"; // Import the new theme
 import { districts } from "../data/attractions";
 import { upcomingEvents } from "../data/events";
 import { FaArrowRight } from "react-icons/fa";
+import CyberpunkStickers from "../components/CyberpunkStickers";
+import CyberpunkChatbot from "../components/CyberpunkChatbot";
 
 // Import Swiper for sliding feature (run: npm install swiper)
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,19 +18,33 @@ import "swiper/css/pagination";
 const HomePage = () => {
   const districtList = Object.keys(districts);
 
+  useEffect(() => {
+    document.body.classList.add("cyberpunk");
+    // Cleanup function to remove the class when the component unmounts
+    return () => {
+      document.body.classList.remove("cyberpunk");
+    };
+  }, []);
+
   return (
-    <div className="homePage">
+    <div className="homePage cyberpunk">
       {/* Hero Section */}
       <header className="heroSection">
         <div className="heroOverlay"></div>
         <div className="heroContent">
-          <h1>Welcome to Sabah, Land Below the Wind</h1>
-          <p>Your unforgettable adventure starts with JumBah!</p>
+          <h1>Welcome to Neo-Sabah</h1>
+          <p>Your unforgettable adventure starts now!</p>
           <Link to="/adventure" className="btn-primary">
-            Start Your Adventure
+            Enter the Neon Jungle
           </Link>
         </div>
       </header>
+
+      {/* Cyberpunk Stickers Section */}
+      <section className="section container">
+        <h2 className="sectionTitle">16-Bit Sabah Stickers</h2>
+        <CyberpunkStickers />
+      </section>
 
       {/* Explore Districts Section */}
       <section className="section container">
@@ -75,6 +93,7 @@ const HomePage = () => {
           ))}
         </div>
       </section>
+      <CyberpunkChatbot />
     </div>
   );
 };
